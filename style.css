@@ -61,6 +61,8 @@ a {
 	border-radius: 1em;
 	height: auto;
 	transition-duration: 0.3s;
+	border-style: solid;
+	border-color: gold;
 }
 
 .TextBox:hover {
@@ -82,4 +84,14 @@ a {
 #TextTitle {
 	margin: 0;
 	padding: 0;
+}
+
+.About {
+	bottom: 0;
+	background-color: #333;
+	margin: 0;
+	height: 5em;
+}
+#AboutText {
+	color: whitesmoke;
 }
