@@ -28,6 +28,7 @@ body {
 	transition-duration: 0.3s;
 	padding: 0;
 	height: auto;
+	margin-bottom: 3em;
 }
 .NavBar:hover {
 	padding: 1em;
@@ -49,7 +50,8 @@ a {
 
 .TextBox {
 	margin: 3em;
-	margin-bottom: 0;
+	margin-bottom: 3em;
+	margin-top: 0;
 	background-color: #666;
 	width: auto;
 	padding: 1em;
@@ -64,8 +66,8 @@ a {
 .TextBox:hover {
 	background-color: #777;
 	margin: 2em;
-	margin-top: 3em;
-	margin-bottom: 0;
+	margin-top: 0;
+	margin-bottom: 0.8em;
 	padding: 2em;
 	padding-top: 1.5em;
 	padding-left: 2.5em;
