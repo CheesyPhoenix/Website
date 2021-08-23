@@ -22,7 +22,7 @@ body {
 	color: #555;
 }
 
-.NavBar {
+#NavBar {
 	background-color: #555;
 	color: darkgray;
 	transition-duration: 0.3s;
@@ -30,7 +30,7 @@ body {
 	height: auto;
 	margin-bottom: 3em;
 }
-.NavBar:hover {
+#NavBar:hover {
 	padding: 1em;
 	padding-left: 0;
 }
@@ -64,7 +64,6 @@ a {
 	border-style: solid;
 	border-color: gold;
 }
-
 .TextBox:hover {
 	background-color: #777;
 	margin: 2em;
