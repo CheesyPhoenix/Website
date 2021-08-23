@@ -53,7 +53,7 @@ a {
 	margin-bottom: 3em;
 	margin-top: 0;
 	background-color: #666;
-	width: auto;
+	width: 50em;
 	padding: 1em;
 	padding-left: 1.5em;
 	padding-top: 0.3em;
@@ -75,6 +75,24 @@ a {
 	border-radius: 0.2em;
 }
 
+#image {
+	right: 3em;
+	position: absolute;
+	top: 10em;
+	width: 25%;
+}
+
+@media (min-width: 1500px) {
+	#image {
+		width: 35%;
+	}
+}
+
+@media (max-width: 1300px) {
+	#image {
+		display: none;
+	}
+}
 #Text {
 	margin: 0;
 	padding: 0;

@@ -7,7 +7,7 @@ class siteListItem {
 }
 
 const sites = [
-	new siteListItem("Test Title", "Test desc", "https://www.google.com/"),
+	new siteListItem(" Title", "Test desc", "https://www.google.com/"),
 	new siteListItem("Test Title", "Test desc", "https://www.google.com/"),
 	new siteListItem("Test Title", "Test desc", "https://www.google.com/"),
 	new siteListItem("Test Title", "Test desc", "https://www.google.com/"),
