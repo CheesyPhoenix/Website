@@ -7,7 +7,11 @@ class siteListItem {
 }
 
 const sites = [
-	new siteListItem(" Title", "Test desc", "https://www.google.com/"),
+	new siteListItem(
+		"Ghost House",
+		"A ghost house themed web game",
+		"https://ghosthouse.tk/"
+	),
 	new siteListItem("Test Title", "Test desc", "https://www.google.com/"),
 	new siteListItem("Test Title", "Test desc", "https://www.google.com/"),
 	new siteListItem("Test Title", "Test desc", "https://www.google.com/"),
@@ -21,7 +25,7 @@ for (let i = 0; i < sites.length; i++) {
 	let textBox = document.createElement("div");
 	textBox.className = "TextBox";
 	textBox.onclick = function () {
-		location.href = sites[i].link;
+		window.open(sites[i].link, "_blank");
 	};
 
 	let title = document.createElement("h2");
@@ -49,7 +53,7 @@ class navItem {
 }
 
 const navItems = [
-	new navItem("TestNav", "https://www.google.com/"),
+	new navItem("GitHub", "https://github.com/CheesyPhoenix"),
 	new navItem("TestNav", "https://www.google.com/"),
 	new navItem("TestNav", "https://www.google.com/"),
 	new navItem("TestNav", "https://www.google.com/"),
@@ -58,6 +62,7 @@ const navItems = [
 for (let i = 0; i < navItems.length; i++) {
 	let titleLink = document.createElement("a");
 	titleLink.href = navItems[i].link;
+	titleLink.target = "_blank";
 
 	let title = document.createElement("h2");
 	title.className = "NavItem";
