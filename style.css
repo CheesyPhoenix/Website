@@ -63,6 +63,7 @@ a {
 	transition-duration: 0.3s;
 	border-style: solid;
 	border-color: gold;
+	user-select: none;
 }
 .TextBox:hover {
 	background-color: #777;
