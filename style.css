@@ -80,6 +80,7 @@ a {
 	position: absolute;
 	top: 10em;
 	width: 25%;
+	transition-duration: 0.3s;
 }
 
 @media (min-width: 1500px) {
@@ -87,10 +88,22 @@ a {
 		width: 35%;
 	}
 }
-
+@media (max-width: 1310px) {
+	#image {
+		width: 0;
+	}
+}
 @media (max-width: 1300px) {
 	#image {
 		display: none;
+	}
+	.TextBox {
+		width: 80%;
+	}
+}
+@media (max-width: 1000px) {
+	.TextBox {
+		width: auto;
 	}
 }
 #Text {
