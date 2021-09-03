@@ -15,7 +15,7 @@ class siteListItem {
 		this.color = color;
 	}
 }
-const TestSites = [
+const PersonalSites = [
 	new siteListItem(
 		"Ghost House",
 		"A ghost house themed web game",
@@ -25,16 +25,11 @@ const TestSites = [
 
 const MenuSites = [
 	new siteListItem(
-		"Ghost House",
-		"A ghost house themed web game",
-		"https://ghosthouse.tk/"
-	),
-	new siteListItem(
-		"Test Sub Page",
-		"Test desc",
+		"Personal Projects",
+		"Other websites that i've made",
 		null,
 		"page",
-		TestSites,
+		PersonalSites,
 		"blue"
 	),
 	new siteListItem("Test Title", "Test desc", "https://www.google.com/"),

@@ -55,8 +55,6 @@ class navItem {
 const navItems = [
 	new navItem("Menu", ""),
 	new navItem("GitHub", "https://github.com/CheesyPhoenix"),
-	new navItem("TestNav", "https://www.google.com/"),
-	new navItem("TestNav", "https://www.google.com/"),
 ];
 
 for (let i = 0; i < navItems.length; i++) {
