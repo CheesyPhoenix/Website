@@ -1,7 +1,7 @@
 let siteTitle = "Hello World";
 document.getElementById("Title").innerText = siteTitle + " - Menu";
 
-function renderSites(sites) {
+function renderSites(sites, color = "gold") {
 	for (let i = 0; i < sites.length; i++) {
 		let textBox = document.createElement("div");
 		textBox.className = "TextBox";
@@ -10,13 +10,14 @@ function renderSites(sites) {
 				window.open(sites[i].link, "_blank");
 			} else if (sites[i].type == "page") {
 				removeItems();
-				renderSites(sites[i].array);
+				renderSites(sites[i].array, sites[i].color);
 				document.getElementById("Title").innerText =
 					siteTitle + " - " + sites[i].title;
 			} else {
 				console.log("ya messed up");
 			}
 		};
+		textBox.style.borderColor = color;
 
 		let title = document.createElement("h2");
 		title.className = "TextTitle";
