@@ -1,48 +1,47 @@
-class siteListItem {
-	constructor(title, desc, link) {
-		this.title = title;
-		this.desc = desc;
-		this.link = link;
+let siteTitle = "Hello World";
+document.getElementById("Title").innerText = siteTitle + " - Menu";
+
+function renderSites(sites) {
+	for (let i = 0; i < sites.length; i++) {
+		let textBox = document.createElement("div");
+		textBox.className = "TextBox";
+		textBox.onclick = function () {
+			if (sites[i].type == "link") {
+				window.open(sites[i].link, "_blank");
+			} else if (sites[i].type == "page") {
+				removeItems();
+				renderSites(sites[i].array);
+				document.getElementById("Title").innerText =
+					siteTitle + " - " + sites[i].title;
+			} else {
+				console.log("ya messed up");
+			}
+		};
+
+		let title = document.createElement("h2");
+		title.className = "TextTitle";
+		let titleText = document.createTextNode(sites[i].title);
+		title.appendChild(titleText);
+
+		let desc = document.createElement("p");
+		desc.className = "Text";
+		let descText = document.createTextNode(sites[i].desc);
+		desc.appendChild(descText);
+
+		textBox.appendChild(title);
+		textBox.appendChild(desc);
+
+		let itemsContainer = document.getElementById("items");
+		itemsContainer.appendChild(textBox);
 	}
 }
+renderSites(MenuSites);
 
-const sites = [
-	new siteListItem(
-		"Ghost House",
-		"A ghost house themed web game",
-		"https://ghosthouse.tk/"
-	),
-	new siteListItem("Test Title", "Test desc", "https://www.google.com/"),
-	new siteListItem("Test Title", "Test desc", "https://www.google.com/"),
-	new siteListItem("Test Title", "Test desc", "https://www.google.com/"),
-	new siteListItem("Test Title", "Test desc", "https://www.google.com/"),
-	new siteListItem("Test Title", "Test desc", "https://www.google.com/"),
-	new siteListItem("Test Title", "Test desc", "https://www.google.com/"),
-	new siteListItem("Test Title", "Test desc", "https://www.google.com/"),
-];
-
-for (let i = 0; i < sites.length; i++) {
-	let textBox = document.createElement("div");
-	textBox.className = "TextBox";
-	textBox.onclick = function () {
-		window.open(sites[i].link, "_blank");
-	};
-
-	let title = document.createElement("h2");
-	title.className = "TextTitle";
-	let titleText = document.createTextNode(sites[i].title);
-	title.appendChild(titleText);
-
-	let desc = document.createElement("p");
-	desc.className = "Text";
-	let descText = document.createTextNode(sites[i].desc);
-	desc.appendChild(descText);
-
-	textBox.appendChild(title);
-	textBox.appendChild(desc);
-
-	let itemsContainer = document.getElementById("items");
-	itemsContainer.appendChild(textBox);
+function removeItems() {
+	let items = document.querySelectorAll(".TextBox");
+	for (let i = 0; i < items.length; i++) {
+		document.getElementById("items").removeChild(items[i]);
+	}
 }
 
 class navItem {
@@ -53,8 +52,8 @@ class navItem {
 }
 
 const navItems = [
+	new navItem("Menu", ""),
 	new navItem("GitHub", "https://github.com/CheesyPhoenix"),
-	new navItem("TestNav", "https://www.google.com/"),
 	new navItem("TestNav", "https://www.google.com/"),
 	new navItem("TestNav", "https://www.google.com/"),
 ];
@@ -63,6 +62,15 @@ for (let i = 0; i < navItems.length; i++) {
 	let titleLink = document.createElement("a");
 	titleLink.href = navItems[i].link;
 	titleLink.target = "_blank";
+	if (navItems[i].title == "Menu") {
+		titleLink.onclick = () => {
+			removeItems();
+			renderSites(MenuSites);
+			document.getElementById("Title").innerText = siteTitle + " - Menu";
+		};
+		titleLink.href = "javascript:;";
+		titleLink.target = "";
+	}
 
 	let title = document.createElement("h2");
 	title.className = "NavItem";
