@@ -3,7 +3,7 @@ body {
 		Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 	padding: 0;
 	margin: 0;
-	background-color: rgb(231, 231, 231);
+	background-color: darkgrey;
 	min-height: 100vh;
 	position: relative;
 }
@@ -26,7 +26,7 @@ body::after {
 #Title {
 	padding: 0;
 	margin: 0;
-	color: #555;
+	color: #444;
 }
 
 #NavBar {
@@ -135,4 +135,11 @@ a {
 #AboutText {
 	position: relative;
 	color: whitesmoke;
+	margin: 1em;
+	margin-bottom: 0.5em;
+}
+#cookies {
+	color: whitesmoke;
+	margin: 1.5em;
+	margin-top: 0.5em;
 }

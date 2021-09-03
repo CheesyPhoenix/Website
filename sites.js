@@ -22,20 +22,53 @@ const PersonalSites = [
 		"https://ghosthouse.tk/"
 	),
 ];
+const ProgrammingSites = [
+	new siteListItem(
+		"Arkiv Side",
+		"Denne siden (cheesyphoenix.tk)",
+		"https://cheesyphoenix.tk"
+	),
+];
+const TeknologiSites = [
+	new siteListItem(
+		"Hjemmenettverk",
+		"Prosjekt om hjemmenettverk",
+		"hjemmenettverk.png"
+	),
+];
+const MedieSites = [new siteListItem("This page is currently empty", "Empty")];
 
 const MenuSites = [
 	new siteListItem(
-		"Personal Projects",
-		"Other websites that i've made",
+		"Personlige Prosjekter",
+		"Andre prosjekter jeg har gjort",
 		null,
 		"page",
 		PersonalSites,
 		"blue"
 	),
-	new siteListItem("Test Title", "Test desc", "https://www.google.com/"),
-	new siteListItem("Test Title", "Test desc", "https://www.google.com/"),
-	new siteListItem("Test Title", "Test desc", "https://www.google.com/"),
-	new siteListItem("Test Title", "Test desc", "https://www.google.com/"),
-	new siteListItem("Test Title", "Test desc", "https://www.google.com/"),
-	new siteListItem("Test Title", "Test desc", "https://www.google.com/"),
+	new siteListItem(
+		"Programmering",
+		"Prosjekter fra programmerings timene",
+		null,
+		"page",
+		ProgrammingSites,
+		"blue"
+	),
+	new siteListItem(
+		"Teknologiforståelse",
+		"Prosjekter fra teknologiforståelses timene",
+		null,
+		"page",
+		TeknologiSites,
+		"blue"
+	),
+	new siteListItem(
+		"Medieproduksjon",
+		"Prosjekter fra medieproduksjons timene",
+		null,
+		"page",
+		MedieSites,
+		"coral"
+	),
 ];

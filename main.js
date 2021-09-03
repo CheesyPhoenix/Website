@@ -1,5 +1,5 @@
-let siteTitle = "Hello World";
-document.getElementById("Title").innerText = siteTitle + " - Menu";
+let siteTitle = "Arkiv";
+document.getElementById("Title").innerText = siteTitle + " - Meny";
 
 function renderSites(sites, color = "gold") {
 	for (let i = 0; i < sites.length; i++) {
@@ -53,7 +53,7 @@ class navItem {
 }
 
 const navItems = [
-	new navItem("Menu", ""),
+	new navItem("Meny", ""),
 	new navItem("GitHub", "https://github.com/CheesyPhoenix"),
 ];
 
@@ -61,11 +61,12 @@ for (let i = 0; i < navItems.length; i++) {
 	let titleLink = document.createElement("a");
 	titleLink.href = navItems[i].link;
 	titleLink.target = "_blank";
-	if (navItems[i].title == "Menu") {
+	if (navItems[i].title == "Meny") {
 		titleLink.onclick = () => {
 			removeItems();
 			renderSites(MenuSites);
-			document.getElementById("Title").innerText = siteTitle + " - Menu";
+			document.getElementById("Title").innerText =
+				siteTitle + " - " + navItems[i].title;
 		};
 		titleLink.href = "javascript:;";
 		titleLink.target = "";
