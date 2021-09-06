@@ -36,7 +36,12 @@ function renderSites(sites, color = "gold") {
 		itemsContainer.appendChild(textBox);
 	}
 }
-renderSites(MenuSites);
+fetch("MenuSites.json")
+	.then((response) => response.json())
+	.then((data) => {
+		renderSites(data);
+		MenuSites = data;
+	});
 
 function removeItems() {
 	let items = document.querySelectorAll(".TextBox");
