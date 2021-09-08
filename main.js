@@ -1,7 +1,10 @@
 let siteTitle = "Arkiv";
 document.getElementById("Title").innerText = siteTitle + " - Meny";
 
-let currentPage = "main";
+let currentPage = [];
+
+const pageColor = "gold";
+const linkColor = "blue";
 
 class siteListItem {
 	constructor(
@@ -20,7 +23,7 @@ class siteListItem {
 		this.color = color;
 	}
 }
-function renderSites(sites, color) {
+function renderSites(sites) {
 	for (let i = 0; i < sites.length; i++) {
 		let textBox = document.createElement("div");
 		textBox.className = "TextBox";
@@ -29,14 +32,20 @@ function renderSites(sites, color) {
 				window.open(sites[i].link, "_blank");
 			} else if (sites[i].type == "page") {
 				removeItems();
-				renderSites(sites[i].array, sites[i].color);
+				renderSites(sites[i].array);
 				document.getElementById("Title").innerText =
 					siteTitle + " - " + sites[i].title;
+				currentPage.push(sites[i].title);
 			} else {
 				console.log("ya messed up");
 			}
 		};
-		textBox.style.borderColor = color;
+		if (sites[i].type == "link") {
+			textBox.style.borderColor = linkColor;
+		}
+		if (sites[i].type == "page") {
+			textBox.style.borderColor = pageColor;
+		}
 
 		let title = document.createElement("h2");
 		title.className = "TextTitle";
@@ -58,6 +67,7 @@ function renderSites(sites, color) {
 
 async function renderMenuSites() {
 	removeItems();
+	currentPage = [];
 	let sites;
 	let requestOptions = {
 		method: "GET",
@@ -81,15 +91,20 @@ async function renderMenuSites() {
 				window.open(sites[i].link, "_blank");
 			} else if (sites[i].type == "page") {
 				removeItems();
-				renderSites(sites[i].array, sites[i].color);
+				renderSites(sites[i].array);
 				document.getElementById("Title").innerText =
 					siteTitle + " - " + sites[i].title;
-				currentPage = sites[i].title;
+				currentPage.push(sites[i].title);
 			} else {
 				console.log("ya messed up");
 			}
 		};
-		textBox.style.borderColor = "gold";
+		if (sites[i].type == "link") {
+			textBox.style.borderColor = linkColor;
+		}
+		if (sites[i].type == "page") {
+			textBox.style.borderColor = pageColor;
+		}
 
 		let title = document.createElement("h2");
 		title.className = "TextTitle";
@@ -108,6 +123,16 @@ async function renderMenuSites() {
 		itemsContainer.appendChild(textBox);
 	}
 }
+function temp(array, x = 0) {
+	if (x == currentPage.length) {
+		return array;
+	}
+	for (let i = 0; i < array.length; i++) {
+		if (array[i].title == currentPage[x]) {
+			return temp(array[i].array, x + 1);
+		}
+	}
+}
 
 function addItem(item, path = currentPage) {
 	let requestOptions = {
@@ -121,23 +146,10 @@ function addItem(item, path = currentPage) {
 	fetch("http://localhost:8080/tshirt", requestOptions)
 		.then((response) => response.json())
 		.then((data) => {
-			if (path == "main") {
+			if (path.length == 0) {
 				data.push(item);
-				console.log(data);
 			} else {
-				let actionDone = false;
-				//TODO: nesting when adding pages
-				for (let i = 0; i < data.length; i++) {
-					if (data[i].title == path) {
-						actionDone = true;
-						data[i].array.push(item);
-						i = data.length;
-					}
-					//make a recursive for loop over all items in array and their items
-				}
-				if (!actionDone) {
-					console.error("addItem - path not found");
-				}
+				temp(data).push(item);
 			}
 
 			let _requestOptions = {
@@ -189,6 +201,7 @@ for (let i = 0; i < navItems.length; i++) {
 			renderMenuSites();
 			document.getElementById("Title").innerText =
 				siteTitle + " - " + navItems[i].title;
+			currentPage = [];
 		};
 		titleLink.href = "javascript:;";
 		titleLink.target = "";
@@ -207,3 +220,17 @@ for (let i = 0; i < navItems.length; i++) {
 }
 
 renderMenuSites();
+
+const form = document.getElementById("addItemForm");
+
+form.addEventListener("submit", (event) => {
+	event.preventDefault();
+	const title = form.elements["title"];
+	const desc = form.elements["desc"];
+	const link = form.elements["link"];
+	const type = form.elements["type"];
+
+	addItem(new siteListItem(title.value, desc.value, link.value, type.value));
+
+	form.reset();
+});
