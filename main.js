@@ -5,6 +5,7 @@ let currentPage = [];
 
 const pageColor = "gold";
 const linkColor = "blue";
+const docColor = "green";
 
 class siteListItem {
 	constructor(
@@ -23,7 +24,8 @@ class siteListItem {
 		this.color = color;
 	}
 }
-function renderSites(sites) {
+async function renderSites(sites) {
+	await removeItems();
 	for (let i = 0; i < sites.length; i++) {
 		let textBox = document.createElement("div");
 		textBox.className = "TextBox";
@@ -36,6 +38,8 @@ function renderSites(sites) {
 				document.getElementById("Title").innerText =
 					siteTitle + " - " + sites[i].title;
 				currentPage.push(sites[i].title);
+			} else if (sites[i].type == "doc") {
+				document = requestDoc(sites[i].link);
 			} else {
 				console.log("ya messed up");
 			}
@@ -45,6 +49,9 @@ function renderSites(sites) {
 		}
 		if (sites[i].type == "page") {
 			textBox.style.borderColor = pageColor;
+		}
+		if (sites[i].type == "doc") {
+			textBox.style.borderColor = docColor;
 		}
 
 		let title = document.createElement("h2");
@@ -66,7 +73,7 @@ function renderSites(sites) {
 }
 
 async function renderMenuSites() {
-	removeItems();
+	await removeItems();
 	currentPage = [];
 	let sites;
 	let requestOptions = {
@@ -90,11 +97,12 @@ async function renderMenuSites() {
 			if (sites[i].type == "link") {
 				window.open(sites[i].link, "_blank");
 			} else if (sites[i].type == "page") {
-				removeItems();
 				renderSites(sites[i].array);
 				document.getElementById("Title").innerText =
 					siteTitle + " - " + sites[i].title;
 				currentPage.push(sites[i].title);
+			} else if (sites[i].type == "doc") {
+				requestDoc(sites[i].link);
 			} else {
 				console.log("ya messed up");
 			}
@@ -104,6 +112,9 @@ async function renderMenuSites() {
 		}
 		if (sites[i].type == "page") {
 			textBox.style.borderColor = pageColor;
+		}
+		if (sites[i].type == "doc") {
+			textBox.style.borderColor = docColor;
 		}
 
 		let title = document.createElement("h2");
@@ -123,15 +134,52 @@ async function renderMenuSites() {
 		itemsContainer.appendChild(textBox);
 	}
 }
-function temp(array, x = 0) {
+function find(array, x = 0) {
 	if (x == currentPage.length) {
 		return array;
 	}
 	for (let i = 0; i < array.length; i++) {
 		if (array[i].title == currentPage[x]) {
-			return temp(array[i].array, x + 1);
+			return find(array[i].array, x + 1);
 		}
 	}
+}
+
+function deleteItem(title) {
+	let requestOptions = {
+		method: "GET",
+		mode: "cors",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		redirect: "follow",
+	};
+	fetch("http://localhost:8080/tshirt", requestOptions)
+		.then((response) => response.json())
+		.then((data) => {
+			find(data).splice(
+				find(data).indexOf(
+					find(data).filter((item) => {
+						if (item.title == title) {
+							return true;
+						}
+						return false;
+					})
+				),
+				1
+			);
+			let _requestOptions = {
+				method: "POST",
+				mode: "cors",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				redirect: "follow",
+				body: JSON.stringify(data),
+			};
+			fetch("http://localhost:8080/tshirt", _requestOptions);
+			renderMenuSites();
+		});
 }
 
 function addItem(item, path = currentPage) {
@@ -149,7 +197,7 @@ function addItem(item, path = currentPage) {
 			if (path.length == 0) {
 				data.push(item);
 			} else {
-				temp(data).push(item);
+				find(data).push(item);
 			}
 
 			let _requestOptions = {
@@ -172,11 +220,13 @@ function addItem(item, path = currentPage) {
 	])
 );*/
 
-function removeItems() {
-	let items = document.querySelectorAll(".TextBox");
-	for (let i = 0; i < items.length; i++) {
-		document.getElementById("items").removeChild(items[i]);
-	}
+async function removeItems() {
+	await fetch("stuff.html")
+		.then((response) => response.text())
+		.then((data) => {
+			document.getElementById("body").innerHTML = data;
+			addListener();
+		});
 }
 
 class navItem {
@@ -197,7 +247,6 @@ for (let i = 0; i < navItems.length; i++) {
 	titleLink.target = "_blank";
 	if (navItems[i].title == "Meny") {
 		titleLink.onclick = () => {
-			removeItems();
 			renderMenuSites();
 			document.getElementById("Title").innerText =
 				siteTitle + " - " + navItems[i].title;
@@ -220,17 +269,3 @@ for (let i = 0; i < navItems.length; i++) {
 }
 
 renderMenuSites();
-
-const form = document.getElementById("addItemForm");
-
-form.addEventListener("submit", (event) => {
-	event.preventDefault();
-	const title = form.elements["title"];
-	const desc = form.elements["desc"];
-	const link = form.elements["link"];
-	const type = form.elements["type"];
-
-	addItem(new siteListItem(title.value, desc.value, link.value, type.value));
-
-	form.reset();
-});

@@ -35,7 +35,7 @@ body::after {
 	transition-duration: 0.3s;
 	padding: 0;
 	height: auto;
-	margin-bottom: 3em;
+	margin-bottom: 1em;
 }
 #NavBar:hover {
 	padding: 1em;
@@ -142,4 +142,8 @@ a {
 	color: whitesmoke;
 	margin: 1.5em;
 	margin-top: 0.5em;
+}
+
+#body {
+	padding: 2em;
 }
