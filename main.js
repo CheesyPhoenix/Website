@@ -157,14 +157,16 @@ function deleteItem(title) {
 	fetch("http://localhost:8080/tshirt", requestOptions)
 		.then((response) => response.json())
 		.then((data) => {
-			find(data).splice(
-				find(data).indexOf(
-					find(data).filter((item) => {
+			const page = find(data);
+
+			page.splice(
+				page.indexOf(
+					page.filter((item) => {
 						if (item.title == title) {
 							return true;
 						}
 						return false;
-					})
+					})[0]
 				),
 				1
 			);
