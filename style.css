@@ -148,11 +148,10 @@ a {
 	padding: 2em;
 }
 
-/*Sosiale medier*/
-
-#SM-title {
-}
-
-#SM-subtitle {
-	margin-left: 1em;
+#SM-container {
+	background-color: white;
+	padding: 1em;
+	border-style: solid;
+	border-color: black;
+	height: fit-content;
 }
