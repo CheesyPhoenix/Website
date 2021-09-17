@@ -10,6 +10,6 @@
   <h3>run:</h3> <pre><code>node .</code></pre>
 </br>
 </br>
-<h3>Then:</h3>
-<h2>clone this repo<h2>
-<h2>and launch website normally (index.html)</h2>
+<h2>Then:</h2>
+<h3>clone this repo</h3>
+<h3>and launch website normally (index.html)</h3>
