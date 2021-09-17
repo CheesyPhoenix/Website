@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="no">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Hello World!</title>
+		<link rel="stylesheet" href="../style.css" />
+	</head>
+	<body>
+		<div class="TopBar">
+			<h1 id="Title">Hello World</h1>
+		</div>
+		<div id="NavBar">
+			<!--Auto gen.-->
+		</div>
+		<div id="body">
+			<div id="items">
+				<!--stuff auto generated here-->
+			</div>
+			<img
+				src="https://c.tenor.com/7XKAaJqz-IMAAAAi/banana-food.gif"
+				id="image"
+			/>
+			<form id="addItemForm">
+				<input name="title" type="text" placeholder="Title" />
+				<input name="delete" type="checkbox" />
+				<label for="delete">delete?</label>
+				<input name="desc" type="text" placeholder="Description" />
+				<input name="link" type="text" placeholder="link" />
+				<select name="type">
+					<option value="page">Page</option>
+					<option value="link">Link</option>
+					<option value="doc">Document</option>
+				</select>
+				<button type="submit" id="button">Submit</button>
+			</form>
+		</div>
+		<script src="../getDoc.js"></script>
+		<script src="Moderation.js"></script>
+		<script src="../formlistener.js"></script>
+		<script src="mainAdmin.js"></script>
+		<div class="About">
+			<h3 id="AboutText">About</h3>
+			<p id="cookies">Laget av Sindre som et skoleprosjekt</p>
+		</div>
+	</body>
+</html>
