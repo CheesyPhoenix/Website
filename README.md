@@ -2,7 +2,7 @@
 
 <h2>with docker:</h2>
   <h3>run:</h3> 
-    <pre><code>docker run -d --env DATA_PATH=/src/data/MenuSites.json --mount type=volume,src=testVolume,target=/src/data -p 8080:8080 cheesyphoenix/websiteapi:2.0</code></pre>
+    <pre><code>docker run -d --env DATA_PATH=/src/data/MenuSites.json --mount type=volume,src=testVolume,target=/src/data -p 8080:8080 cheesyphoenix/websiteapi:2.1</code></pre>
 </br>
 </br>
 <h2>with node:</h2>
