@@ -7,5 +7,5 @@
 </br>
 <h2>with node:</h2>
   <h3>clone repo:</h3> https://github.com/CheesyPhoenix/api </br>
-  <h3>run:</h3> node .
+  <h3>run:</h3> <pre><code>node .</code></pre>
   
