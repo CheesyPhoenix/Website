@@ -25,4 +25,4 @@ function addListener() {
 		form.reset();
 	});
 }
-//addListener();
+addListener();

@@ -138,10 +138,11 @@ async function removeItems() {
 		.then((response) => response.text())
 		.then((data) => {
 			document.getElementById("body").innerHTML = data;
-			addListener();
+			try {
+				addListener();
+			} catch {}
 		});
 }
-
 class navItem {
 	constructor(title, link) {
 		this.title = title;
