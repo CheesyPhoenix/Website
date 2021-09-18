@@ -14,4 +14,5 @@
 </br>
 <h2>Then:</h2>
 <h3>clone this repo</h3>
+
 <h3>and launch website normally (index.html)</h3>
