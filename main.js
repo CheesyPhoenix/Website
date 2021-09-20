@@ -185,7 +185,8 @@ for (let i = 0; i < navItems.length; i++) {
 renderMenuSites();
 
 setTimeout(() => {
-	if (window.location.href != "http://cheesyphoenix.tk")
+	if (window.location.href == "https://cheesyphoenix.tk/") {
 		window.location.href = "http://cheesyphoenix.tk";
+	}
 	console.log("done");
 }, 100);
