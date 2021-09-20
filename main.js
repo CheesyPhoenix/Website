@@ -1,4 +1,5 @@
 let siteTitle = "Arkiv";
+let apiLink = "http://cheesyphoenix.tk:8080/";
 document.getElementById("Title").innerText = siteTitle + " - Meny";
 
 const pageColor = "gold";
@@ -82,7 +83,7 @@ async function renderMenuSites() {
 		},
 		redirect: "follow",
 	};
-	await fetch("http://cheesyphoenix.tk:8080/tshirt", requestOptions)
+	await fetch(apiLink + "tshirt", requestOptions)
 		.then((response) => response.json())
 		.then((data) => {
 			//data[0].array[0].link = "https://google.com";
