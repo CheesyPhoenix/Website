@@ -89,11 +89,12 @@ a {
 	top: 10em;
 	width: 25%;
 	transition-duration: 0.3s;
+	max-height: 70%;
 }
 
 @media (min-width: 1500px) {
 	#image {
-		width: 35%;
+		width: 30%;
 	}
 }
 @media (max-width: 1310px) {

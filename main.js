@@ -6,6 +6,31 @@ const pageColor = "gold";
 const linkColor = "blue";
 const docColor = "green";
 
+//random meme
+async function getMeme() {
+	let requestOptions = {
+		method: "GET",
+		mode: "cors",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		redirect: "follow",
+	};
+	await fetch("https://meme-api.herokuapp.com/gimme/Chonkers", requestOptions)
+		.then((response) => response.json())
+		.then((data) => {
+			if (!data.nsfw && !data.spoiler) {
+				document.getElementById("image").src = data.url;
+			} else {
+				getMeme();
+			}
+		});
+	setTimeout(() => {
+		getMeme();
+	}, 10000);
+}
+getMeme();
+
 class siteListItem {
 	constructor(
 		title,
@@ -25,6 +50,7 @@ class siteListItem {
 }
 async function renderSites(sites) {
 	await removeItems();
+	getMeme();
 	for (let i = 0; i < sites.length; i++) {
 		let textBox = document.createElement("div");
 		textBox.className = "TextBox";
@@ -73,6 +99,7 @@ async function renderSites(sites) {
 
 async function renderMenuSites() {
 	await removeItems();
+	getMeme();
 	currentPage = [];
 	let sites;
 	let requestOptions = {
