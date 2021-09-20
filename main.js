@@ -82,7 +82,7 @@ async function renderMenuSites() {
 		},
 		redirect: "follow",
 	};
-	await fetch("http://localhost:8080/tshirt", requestOptions)
+	await fetch("http://cheesyphoenix.tk:8080/tshirt", requestOptions)
 		.then((response) => response.json())
 		.then((data) => {
 			//data[0].array[0].link = "https://google.com";

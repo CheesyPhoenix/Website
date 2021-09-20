@@ -7,7 +7,7 @@ async function requestDoc(link) {
 		},
 		redirect: "follow",
 	};
-	await fetch("http://localhost:8080/document/" + link, requestOptions)
+	await fetch("http://cheesyphoenix:8080/document/" + link, requestOptions)
 		.then((response) => response.text())
 		.then((data) => {
 			document.getElementById("body").innerHTML = data;
