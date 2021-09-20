@@ -183,3 +183,8 @@ for (let i = 0; i < navItems.length; i++) {
 }
 
 renderMenuSites();
+
+setTimeout(() => {
+	window.location.href = "http://cheesyphoenix.tk";
+	console.log("done");
+}, 100);
