@@ -11,7 +11,7 @@ function find(array, x = 0) {
 	}
 }
 
-function deleteItem(title) {
+async function deleteItem(title) {
 	let requestOptions = {
 		method: "GET",
 		mode: "cors",
@@ -20,7 +20,7 @@ function deleteItem(title) {
 		},
 		redirect: "follow",
 	};
-	fetch("http://localhost:8080/tshirt", requestOptions)
+	await fetch(apiLink + "tshirt", requestOptions)
 		.then((response) => response.json())
 		.then((data) => {
 			const page = find(data);
@@ -45,15 +45,14 @@ function deleteItem(title) {
 				redirect: "follow",
 				body: JSON.stringify({
 					data: JSON.stringify(data),
-					password: "bananacode2043",
+					password: activeToken,
 				}),
 			};
-			fetch("http://localhost:8080/tshirt", _requestOptions);
-			renderMenuSites();
+			post(apiLink + "tshirt", _requestOptions);
 		});
 }
 
-function addItem(item, path = currentPage) {
+async function addItem(item, path = currentPage) {
 	let requestOptions = {
 		method: "GET",
 		mode: "cors",
@@ -62,7 +61,7 @@ function addItem(item, path = currentPage) {
 		},
 		redirect: "follow",
 	};
-	fetch("http://localhost:8080/tshirt", requestOptions)
+	await fetch(apiLink + "tshirt", requestOptions)
 		.then((response) => response.json())
 		.then((data) => {
 			if (path.length == 0) {
@@ -80,10 +79,18 @@ function addItem(item, path = currentPage) {
 				redirect: "follow",
 				body: JSON.stringify({
 					data: JSON.stringify(data),
-					password: "bananacode2043",
+					password: activeToken,
 				}),
 			};
-			fetch("http://localhost:8080/tshirt", _requestOptions);
-			renderMenuSites();
+			post(apiLink + "tshirt", _requestOptions);
 		});
+}
+
+async function post(link, req) {
+	await fetch(link, req).then((response) => {
+		if (response.status == 401) {
+			console.log("logged out");
+		}
+	});
+	renderMenuSites();
 }

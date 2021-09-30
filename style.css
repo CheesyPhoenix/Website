@@ -27,10 +27,37 @@ body::after {
 	padding: 0;
 	margin: 0;
 	color: #444;
+	display: inline;
+}
+#LoginText {
+	padding: 0;
+	margin: 0;
+	color: #444;
+	display: inline;
+	float: right;
+	margin-top: 0.18em;
+}
+#passwordInput {
+	text-decoration: none;
+	color: #444;
+	border-style: solid;
+	border-color: #666;
+	width: 30%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	transition-duration: 0.2s;
+}
+#passwordInput:focus {
+	border-color: #333;
+	outline: none;
+}
+#body {
+	color: #444;
 }
 
 #NavBar {
-	background-color: #555;
+	background-color: #444;
 	color: darkgray;
 	transition-duration: 0.3s;
 	padding: 0;

@@ -5,6 +5,30 @@ const pageColor = "gold";
 const linkColor = "blue";
 const docColor = "green";
 
+//random meme
+async function getMeme() {
+	let requestOptions = {
+		method: "GET",
+		mode: "cors",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		redirect: "follow",
+	};
+	await fetch("https://meme-api.herokuapp.com/gimme/Chonkers", requestOptions)
+		.then((response) => response.json())
+		.then((data) => {
+			if (!data.nsfw && !data.spoiler) {
+				document.getElementById("image").src = data.url;
+			} else {
+				getMeme();
+			}
+		});
+	setTimeout(() => {
+		getMeme();
+	}, 10000);
+}
+getMeme();
 class siteListItem {
 	constructor(
 		title,
@@ -72,6 +96,7 @@ async function renderSites(sites) {
 
 async function renderMenuSites() {
 	await removeItems();
+	getMeme();
 	currentPage = [];
 	let sites;
 	let requestOptions = {
@@ -82,7 +107,7 @@ async function renderMenuSites() {
 		},
 		redirect: "follow",
 	};
-	await fetch("http://localhost:8080/tshirt", requestOptions)
+	await fetch(apiLink + "tshirt", requestOptions)
 		.then((response) => response.json())
 		.then((data) => {
 			//data[0].array[0].link = "https://google.com";
@@ -133,15 +158,32 @@ async function renderMenuSites() {
 	}
 }
 
+async function validateSession() {
+	let returnValue = false;
+	await fetch(apiLink + "status/" + activeToken).then((response) => {
+		console.log(response);
+		if (response.status == 200) {
+			returnValue = true;
+		} else {
+			returnValue = false;
+		}
+	});
+	return returnValue;
+}
+
 async function removeItems() {
 	await fetch("stuffAdmin.html")
 		.then((response) => response.text())
 		.then((data) => {
 			document.getElementById("body").innerHTML = data;
-			try {
-				addListener();
-			} catch {}
 		});
+	if ((await validateSession()) == true) {
+		await fetch("editForm.html")
+			.then((response) => response.text())
+			.then((data) => {
+				document.getElementById("body").innerHTML += data;
+			});
+	}
 }
 class navItem {
 	constructor(title, link) {
@@ -183,3 +225,10 @@ for (let i = 0; i < navItems.length; i++) {
 }
 
 renderMenuSites();
+
+setTimeout(() => {
+	if (window.location.href == "https://cheesyphoenix.tk/") {
+		window.location.href = "http://cheesyphoenix.tk";
+	}
+	console.log("done");
+}, 100);
