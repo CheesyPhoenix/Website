@@ -30,6 +30,7 @@ async function getMeme() {
 }
 getMeme();
 
+//
 function updatePath() {
 	document.getElementById("Title").innerText = siteTitle + "⠀-⠀";
 	for (let i = 0; i < currentPage.length; i++) {
