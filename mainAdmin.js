@@ -57,9 +57,27 @@ class siteListItem {
 }
 async function renderSites(sites) {
 	updatePath();
-
 	await removeItems();
+	getMeme();
+	let _admin = await validateSession();
 	for (let i = 0; i < sites.length; i++) {
+		let container = document.createElement("div");
+		container.className = "TextBoxContainer";
+		if (_admin) {
+			let delBox = document.createElement("a");
+			delBox.className = "deleteBox";
+			delBox.href = "javascript:;";
+			let delBoxText = document.createElement("p");
+			delBoxText.className = "deleteText";
+			delBoxText.appendChild(document.createTextNode("X"));
+			delBox.appendChild(delBoxText);
+
+			delBox.onclick = function () {
+				deleteItem(sites[i].title);
+			};
+
+			container.appendChild(delBox);
+		}
 		let textBox = document.createElement("div");
 		textBox.className = "TextBox";
 		textBox.onclick = async function () {
@@ -98,9 +116,10 @@ async function renderSites(sites) {
 
 		textBox.appendChild(title);
 		textBox.appendChild(desc);
+		container.appendChild(textBox);
 
 		let itemsContainer = document.getElementById("items");
-		itemsContainer.appendChild(textBox);
+		itemsContainer.appendChild(container);
 	}
 }
 
@@ -108,6 +127,7 @@ async function renderMenuSites() {
 	updatePath();
 	await removeItems();
 	getMeme();
+	let _admin = await validateSession();
 	currentPage = [];
 	let sites;
 	let requestOptions = {
@@ -125,6 +145,23 @@ async function renderMenuSites() {
 			sites = data;
 		});
 	for (let i = 0; i < sites.length; i++) {
+		let container = document.createElement("div");
+		container.className = "TextBoxContainer";
+		if (_admin) {
+			let delBox = document.createElement("a");
+			delBox.className = "deleteBox";
+			delBox.href = "javascript:;";
+			let delBoxText = document.createElement("p");
+			delBoxText.className = "deleteText";
+			delBoxText.appendChild(document.createTextNode("X"));
+			delBox.appendChild(delBoxText);
+
+			delBox.onclick = function () {
+				deleteItem(sites[i].title);
+			};
+
+			container.appendChild(delBox);
+		}
 		let textBox = document.createElement("div");
 		textBox.className = "TextBox";
 		textBox.onclick = function () {
@@ -162,9 +199,10 @@ async function renderMenuSites() {
 
 		textBox.appendChild(title);
 		textBox.appendChild(desc);
+		container.appendChild(textBox);
 
 		let itemsContainer = document.getElementById("items");
-		itemsContainer.appendChild(textBox);
+		itemsContainer.appendChild(container);
 	}
 }
 

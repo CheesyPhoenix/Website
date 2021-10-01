@@ -94,7 +94,7 @@ async function post(link, req) {
 	});
 	await fetch(apiLink + "tshirt")
 		.then((response) => response.json())
-		.then((data) => {
-			renderSites(find(data));
+		.then(async (data) => {
+			await renderSites(await find(data));
 		});
 }

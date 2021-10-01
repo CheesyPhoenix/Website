@@ -6,7 +6,6 @@ function formSubmit() {
 	const link = form.elements["link"];
 	const type = form.elements["type"];
 	if (del.checked) {
-		//TODO: cant delete hello world
 		deleteItem(title.value);
 	} else {
 		addItem(

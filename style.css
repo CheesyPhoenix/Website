@@ -81,6 +81,9 @@ a {
 	text-decoration: none;
 	color: darkgray;
 }
+.TextBoxContainer {
+	width: fit-content;
+}
 
 .TextBox {
 	margin: 3em;
@@ -199,4 +202,29 @@ a {
 
 #backBtn:hover {
 	background-color: #666;
+}
+
+.deleteBox {
+	position: relative;
+	background-color: red;
+	padding: 0em;
+	width: 3em;
+	height: 3em;
+	top: 1em;
+	text-align: center;
+	display: block;
+	float: right;
+	transition-duration: 0.2s;
+	right: 5em;
+}
+.deleteBox:hover {
+	background-color: lightcoral;
+}
+
+.deleteText {
+	text-align: center;
+	position: relative;
+	width: 1em;
+	height: 1em;
+	left: 1em;
 }
