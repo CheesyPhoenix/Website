@@ -92,5 +92,9 @@ async function post(link, req) {
 			console.log("logged out");
 		}
 	});
-	renderMenuSites();
+	await fetch(apiLink + "tshirt")
+		.then((response) => response.json())
+		.then((data) => {
+			renderSites(find(data));
+		});
 }

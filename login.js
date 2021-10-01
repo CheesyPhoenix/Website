@@ -3,6 +3,9 @@ function initiateLogin() {
 		.then((response) => response.text())
 		.then((data) => {
 			document.getElementById("body").innerHTML = data;
+			currentPage = [];
+			updatePath();
+			document.getElementById("Title").innerText += "Login";
 		});
 }
 

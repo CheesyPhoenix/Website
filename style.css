@@ -183,3 +183,20 @@ a {
 	border-color: black;
 	height: fit-content;
 }
+
+#backBtn {
+	background-color: #444;
+	width: 2em;
+	height: 2em;
+	color: white;
+	display: block;
+	position: sticky;
+	float: left;
+	top: 2em;
+	padding: 0;
+	transition-duration: 0.2s;
+}
+
+#backBtn:hover {
+	background-color: #666;
+}

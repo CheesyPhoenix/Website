@@ -29,6 +29,14 @@ async function getMeme() {
 	}, 10000);
 }
 getMeme();
+
+function updatePath() {
+	document.getElementById("Title").innerText = siteTitle + "⠀-⠀";
+	for (let i = 0; i < currentPage.length; i++) {
+		document.getElementById("Title").innerText += currentPage[i] + "/";
+	}
+}
+
 class siteListItem {
 	constructor(
 		title,
@@ -47,19 +55,20 @@ class siteListItem {
 	}
 }
 async function renderSites(sites) {
+	updatePath();
+
 	await removeItems();
 	for (let i = 0; i < sites.length; i++) {
 		let textBox = document.createElement("div");
 		textBox.className = "TextBox";
-		textBox.onclick = function () {
+		textBox.onclick = async function () {
 			if (sites[i].type == "link") {
 				window.open(sites[i].link, "_blank");
 			} else if (sites[i].type == "page") {
-				removeItems();
+				await removeItems();
 				renderSites(sites[i].array);
-				document.getElementById("Title").innerText =
-					siteTitle + " - " + sites[i].title;
 				currentPage.push(sites[i].title);
+				updatePath();
 			} else if (sites[i].type == "doc") {
 				document = requestDoc(sites[i].link);
 			} else {
@@ -95,6 +104,7 @@ async function renderSites(sites) {
 }
 
 async function renderMenuSites() {
+	updatePath();
 	await removeItems();
 	getMeme();
 	currentPage = [];
@@ -121,9 +131,8 @@ async function renderMenuSites() {
 				window.open(sites[i].link, "_blank");
 			} else if (sites[i].type == "page") {
 				renderSites(sites[i].array);
-				document.getElementById("Title").innerText =
-					siteTitle + " - " + sites[i].title;
 				currentPage.push(sites[i].title);
+				updatePath();
 			} else if (sites[i].type == "doc") {
 				requestDoc(sites[i].link);
 			} else {
@@ -161,7 +170,6 @@ async function renderMenuSites() {
 async function validateSession() {
 	let returnValue = false;
 	await fetch(apiLink + "status/" + activeToken).then((response) => {
-		console.log(response);
 		if (response.status == 200) {
 			returnValue = true;
 		} else {
@@ -204,9 +212,8 @@ for (let i = 0; i < navItems.length; i++) {
 	if (navItems[i].title == "Meny") {
 		titleLink.onclick = () => {
 			renderMenuSites();
-			document.getElementById("Title").innerText =
-				siteTitle + " - " + navItems[i].title;
 			currentPage = [];
+			updatePath();
 		};
 		titleLink.href = "javascript:;";
 		titleLink.target = "";
@@ -230,5 +237,4 @@ setTimeout(() => {
 	if (window.location.href == "https://cheesyphoenix.tk/") {
 		window.location.href = "http://cheesyphoenix.tk";
 	}
-	console.log("done");
 }, 100);
