@@ -5,13 +5,22 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Hello World!</title>
-		<link rel="stylesheet" href="../style.css" />
+		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
 		<div class="TopBar">
 			<h1 id="Title">Hello World</h1>
 			<a href="javascript:;" onclick="initiateLogin()"
-				><h2 id="LoginText">Login</h2></a
+				><h2 class="LoginText">Login</h2></a
+			>
+			<a href="javascript:;" onclick="debugToggle()"
+				><h2
+					class="LoginText"
+					id="debugText"
+					style="margin-right: 1.5em"
+				>
+					MainAPI
+				</h2></a
 			>
 		</div>
 		<div id="NavBar">
@@ -46,6 +55,7 @@
 		<script src="mainAdmin.js"></script>
 		<script src="login.js"></script>
 		<script src="backBtn.js"></script>
+		<script src="debug.js"></script>
 		<div class="About">
 			<h3 id="AboutText">About</h3>
 			<p id="cookies">Laget av Sindre som et skoleprosjekt</p>

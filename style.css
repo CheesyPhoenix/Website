@@ -29,7 +29,7 @@ body::after {
 	color: #444;
 	display: inline;
 }
-#LoginText {
+.LoginText {
 	padding: 0;
 	margin: 0;
 	color: #444;
@@ -136,11 +136,17 @@ a {
 	#image {
 		display: none;
 	}
+	.TextBoxContainer {
+		width: 80%;
+	}
 	.TextBox {
 		width: 80%;
 	}
 }
 @media (max-width: 1000px) {
+	.TextBoxContainer {
+		width: auto;
+	}
 	.TextBox {
 		width: auto;
 	}

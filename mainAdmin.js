@@ -89,6 +89,8 @@ async function renderSites(sites) {
 				currentPage.push(sites[i].title);
 				updatePath();
 			} else if (sites[i].type == "doc") {
+				currentPage.push(sites[i].title);
+				updatePath();
 				document = requestDoc(sites[i].link);
 			} else {
 				console.log("ya messed up");
@@ -129,6 +131,7 @@ async function renderMenuSites() {
 	getMeme();
 	let _admin = await validateSession();
 	currentPage = [];
+	updatePath();
 	let sites;
 	let requestOptions = {
 		method: "GET",
@@ -172,6 +175,8 @@ async function renderMenuSites() {
 				currentPage.push(sites[i].title);
 				updatePath();
 			} else if (sites[i].type == "doc") {
+				currentPage.push(sites[i].title);
+				updatePath();
 				requestDoc(sites[i].link);
 			} else {
 				console.log("ya messed up");
