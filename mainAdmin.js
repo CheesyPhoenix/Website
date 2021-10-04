@@ -15,7 +15,7 @@ async function getMeme() {
 		},
 		redirect: "follow",
 	};
-	await fetch("https://meme-api.herokuapp.com/gimme/Chonkers", requestOptions)
+	fetch("https://meme-api.herokuapp.com/gimme/Chonkers", requestOptions)
 		.then((response) => response.json())
 		.then((data) => {
 			if (!data.nsfw && !data.spoiler) {
@@ -24,11 +24,10 @@ async function getMeme() {
 				getMeme();
 			}
 		});
-	setTimeout(() => {
-		getMeme();
-	}, 10000);
 }
-getMeme();
+setInterval(() => {
+	getMeme();
+}, 20 * 1000);
 
 //
 function updatePath() {
