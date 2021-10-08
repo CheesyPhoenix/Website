@@ -4,7 +4,7 @@
 </br>
 <h2>with docker:</h2>
   <h3>run:</h3> 
-    <pre><code>docker run -d --env DATA_PATH=/src/data/MenuSites.json --mount type=volume,src=testVolume,target=/src/data -p 8080:8080 --restart always cheesyphoenix/websiteapi:2.1</code></pre>
+    <pre><code>docker run -d --env DATA_PATH=/src/data/MenuSites.json --mount type=volume,src=testVolume,target=/src/data -p 8080:8080 --restart always cheesyphoenix/websiteapi:latest</code></pre>
 </br>
 </br>
 <h2>with node:</h2>
