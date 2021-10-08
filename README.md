@@ -8,6 +8,10 @@
 </br>
 </br>
 <h2>Then:</h2>
-<h3>clone this repo</h3>
+<ul>
+  <li><p>clone this repo</p></li>
+  <li><p>then launch website normally (index.html), and click on MainAPI to switch to debug api</p></li>
+</ul>
 
-<h3>and launch website normally (index.html), and click on MainAPI to switch to debug api</h3>
+
+
