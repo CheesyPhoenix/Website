@@ -11,5 +11,6 @@ async function requestDoc(link) {
 		.then((response) => response.text())
 		.then((data) => {
 			document.getElementById("body").innerHTML = data;
+			eval(document.getElementById("runthis").innerText);
 		});
 }
