@@ -140,6 +140,7 @@ async function renderMenuSites() {
 		},
 		redirect: "follow",
 	};
+
 	await fetch(apiLink + "tshirt", requestOptions)
 		.then((response) => response.json())
 		.then((data) => {
