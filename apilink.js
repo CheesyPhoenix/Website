@@ -1,4 +1,4 @@
-let apiLink = "http://cheesyphoenix.tk:8080/";
+let apiLink = "http://143.47.225.214:8081/";
 let debugLink = "http://localhost:8080/";
-let mainApiLink = "http://cheesyphoenix.tk:8080/";
+let mainApiLink = "http://143.47.225.214:8081/";
 let activeToken = "none";
